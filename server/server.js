@@ -9,6 +9,7 @@ const app = express()
 
 app.use(bodyParser.json())
 
+// Create a todo
 app.post('/todos', (req, res) => {
 	const todo = new Todo({ text: req.body.text })
 
@@ -17,6 +18,12 @@ app.post('/todos', (req, res) => {
 	}).catch((err) => {
 		res.status(400).send(err)
 	})
+})
+
+app.get('/todos', (req, res) => {
+	Todo.find().then((todos) => {
+		res.status(200).send({ todos })
+	}).catch((err) => res.status(400).send(err))
 })
 
 app.listen(3000, () => {
