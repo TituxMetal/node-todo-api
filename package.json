@@ -1,13 +1,17 @@
 {
   "name": "todo-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "An api for todos app",
   "main": "index.js",
   "scripts": {
+    "start": "node server/server.js",
     "test": "mocha server/**/*.test.js",
     "test-watch": "nodemon --exec 'npm test'"
   },
-  "author": "",
+  "engines": {
+    "node": "8.9.4"
+  },
+  "author": "Tuxi Metal",
   "license": "ISC",
   "dependencies": {
     "body-parser": "1.15.2",
