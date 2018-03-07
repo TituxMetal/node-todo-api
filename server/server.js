@@ -15,8 +15,8 @@ app.use(bodyParser.json())
 app.post('/todos', (req, res) => {
 	const todo = new Todo({ text: req.body.text })
 
-	todo.save().then((doc) => {
-		res.send(doc)
+	todo.save().then((todo) => {
+		res.send({ todo })
 	}).catch((err) => {
 		res.status(400).send(err)
 	})
@@ -49,27 +49,19 @@ app.get('/todos/:id', (req, res) => {
 
 // Delete a todo by its ID
 app.delete('/todos/:id', (req, res) => {
-	// get the Id
 	const todoId = req.params.id
 
-	// validate the Id => not valid ? return 404
 	if (!ObjectID.isValid(todoId)) {
 		return res.status(404).send()
 	}
 
-	// remove todo by id
 	Todo.findByIdAndRemove(todoId).then((todo) => {
-		// success
-		// if no doc, send 404
 		if (!todo) {
 			return res.status(404).send()
 		}
 
-		// if doc, send the doc with 200
 		res.send({ todo })
 
-		// error
-		// 400 with empty body
 	}).catch((err) => res.status(404).send())
 })
 
