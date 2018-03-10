@@ -1,5 +1,4 @@
 const env = require('dotenv').config()
-
 const _ = require('lodash')
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -92,6 +91,17 @@ app.delete('/todos/:id', (req, res) => {
 		res.send({ todo })
 
 	}).catch((err) => res.status(404).send())
+})
+
+app.post('/users', (req, res) => {
+	let body = _.pick(req.body, ['email', 'password'])
+	let user = new User(body)
+
+	user.save().then((user) => {
+		return user.generateAuthToken()
+	}).then((token) => {
+		res.header('x-auth', token).send(user)
+	}).catch((err) => res.status(400).send(err))
 })
 
 app.listen(port, () => {
