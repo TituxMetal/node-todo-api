@@ -1,6 +1,8 @@
 const {ObjectID} = require('mongodb')
 const jwt = require('jsonwebtoken')
-const {User} = require('./../../models/user')
+const path = require('path')
+
+const {User} = require(path.join(__dirname, '../../server/models/user'))
 
 const userOneId = new ObjectID()
 const userTwoId = new ObjectID()
