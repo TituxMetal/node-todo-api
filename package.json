@@ -20,7 +20,7 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "jsonwebtoken": "^8.2.0",
-    "lodash": "4.17.13",
+    "lodash": "4.17.19",
     "mongodb": "^3.0.3",
     "mongoose": "5.7.5",
     "validator": "^9.4.1"
